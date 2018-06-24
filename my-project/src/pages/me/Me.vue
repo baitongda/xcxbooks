@@ -12,7 +12,7 @@
 
 <script>
 import YearProgress from '@/components/YearProgress'
-import { showSuccess } from '@/util'
+import { showSuccess, post, showModal } from '@/util'
 import qcloud from 'wafer2-client-sdk'
 import config from '@/config.js'
 export default {
@@ -28,10 +28,21 @@ export default {
     }
   },
   methods: {
+    async addBook (isbn) {
+      const res = await post('/weapp/addbook', {
+        isbn,
+        openid: this.userinfo.openId
+      })
+      console.log(res)
+      showModal('添加成功',`${res.title}添加成功`)
+
+    },
     scanBook () {
       wx.scanCode({
         success: res => {
-          console.log(res)
+          if (res.result) {
+            this.addBook(res.result)
+          }
         }
       })
     },
@@ -43,7 +54,7 @@ export default {
         // 设置登录地址
         qcloud.setLoginUrl(config.loginUrl)
         qcloud.login({
-          success: (userinfo) => {
+          success: userinfo => {
             qcloud.request({
               url: config.userUrl,
               login: true,
@@ -54,7 +65,7 @@ export default {
               }
             })
           },
-          fail: (err) => {
+          fail: err => {
             console.log('登录失败', err)
           }
         })

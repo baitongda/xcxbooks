@@ -34,4 +34,9 @@ router.post('/message', controllers.message.post)
 
 router.get('/demo', controllers.demo)
 
+// POST 用来发送图书扫码信息
+router.post('/addbook', controllers.addbook)
+
+
+
 module.exports = router
