@@ -16,6 +16,9 @@ export default {
 </script>
 
 <style lang="scss">
+  .text-primary{
+    color: #EA5A49;
+  }
   .btn{
     color: white;
     background: #EA5A49;

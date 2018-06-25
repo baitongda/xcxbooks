@@ -5,14 +5,14 @@
       <p>{{userinfo.nickName}}</p>
     </div>
     <YearProgress></YearProgress>
-
+    <button v-if="!userinfo.openId" open-type="getUserInfo">授权用户信息</button>
     <button v-if="userinfo.openId" @click="scanBook" class="btn">添加图书</button>
   </div>
 </template>
 
 <script>
 import YearProgress from '@/components/YearProgress'
-import { showSuccess, post, showModal } from '@/util'
+import { showSuccess, post, showModal, showToast } from '@/util'
 import qcloud from 'wafer2-client-sdk'
 import config from '@/config.js'
 export default {
@@ -66,6 +66,7 @@ export default {
             })
           },
           fail: err => {
+            showToast('登录失败,请先授权用户信息')
             console.log('登录失败', err)
           }
         })

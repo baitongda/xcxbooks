@@ -1,15 +1,36 @@
 <template>
-  <div>图书中心<button open-type="getUserInfo">授权用户信息</button></div>
+  <div>
+    <Card :key='book.id' v-for='book in books' :book='book'></Card>
+  </div>
 </template>
 
 <script>
+import { get } from '@/util'
+import Card from '@/components/Card'
 export default {
-
+  components: {
+    Card
+  },
+  data () {
+    return {
+      books: []
+    }
+  },
+  methods: {
+    async getList() {
+      const books = await get('/weapp/booklist')
+      this.books = books.list
+    }
+  },
+  mounted(){
+    this.getList()
+  }
 }
 </script>
 
-<style>
+<style lang="scss">
 
 </style>
+
 
 

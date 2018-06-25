@@ -31,12 +31,20 @@ function request (url, method, data) {
   })
 }
 
-// 弹窗模板
+// 模态弹窗模板
 export function showModal(title,content){
   wx.showModal({
     title,
     content,
     showCancel: false
+  })
+}
+
+// 弹窗模板
+export function showToast(title){
+  wx.showToast({
+    title,
+    icon: 'none'
   })
 }
 
@@ -47,3 +55,4 @@ export function showSuccess (text) {
     icon: 'success'
   })
 }
+
