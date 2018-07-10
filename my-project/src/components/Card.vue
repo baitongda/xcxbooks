@@ -35,26 +35,26 @@
 </template>
 
 <script>
-import Rate from "./Rate";
+import Rate from './Rate'
 export default {
   components: {
     Rate
   },
-  props: ["book"],
-  computed:{
-    detailUrl(){
-      return '/pages/detail/main?id='+this.book.id
+  props: ['book'],
+  computed: {
+    detailUrl () {
+      return '/pages/detail/main?id=' + this.book.id
     }
   },
-  methods:{
-    preview(){
+  methods: {
+    preview () {
       wx.previewImage({
         current: this.book.image, // 当前显示图片的http链接
         urls: [this.book.image] // 需要预览的图片http链接列表
       })
     }
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>

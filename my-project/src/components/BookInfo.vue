@@ -41,13 +41,13 @@ export default {
   components: {
     Rate
   },
-  props: ["info"],
-  computed:{
-    userinfo(){
+  props: ['info'],
+  computed: {
+    userinfo () {
       return this.info.user_info || {}
     }
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>

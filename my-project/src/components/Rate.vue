@@ -7,12 +7,12 @@
 
 <script>
 export default {
-  props:{
-    value: {type:[Number,String],default:'0'}
+  props: {
+    value: {type: [Number, String], default: '0'}
   },
-  computed:{
-    style() {
-      return `width:${this.value/2.9}em`
+  computed: {
+    style () {
+      return `width:${this.value / 2.9}em`
     }
   }
 }

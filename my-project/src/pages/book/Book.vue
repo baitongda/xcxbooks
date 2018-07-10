@@ -9,62 +9,62 @@
 </template>
 
 <script>
-import { get } from "@/util"
-import Card from "@/components/Card"
-import TopSwiper from "@/components/TopSwiper"
+import { get } from '@/util'
+import Card from '@/components/Card'
+import TopSwiper from '@/components/TopSwiper'
 export default {
   components: {
     Card,
     TopSwiper
   },
-  data() {
+  data () {
     return {
       books: [],
       page: 0,
       more: true,
       tops: []
-    };
+    }
   },
   methods: {
-    async getList(init) {
+    async getList (init) {
       if (init) {
-        this.page = 0;
-        this.more = true;
+        this.page = 0
+        this.more = true
       }
-      wx.showNavigationBarLoading();
-      const books = await get("/weapp/booklist", { page: this.page });
+      wx.showNavigationBarLoading()
+      const books = await get('/weapp/booklist', { page: this.page })
       if (books.list.length < 10 && this.page > 0) {
-        this.more = false;
+        this.more = false
       }
       if (init) {
-        this.books = books.list;
-        wx.stopPullDownRefresh();
+        this.books = books.list
+        wx.stopPullDownRefresh()
       } else {
-        this.books = this.books.concat(books.list);
+        this.books = this.books.concat(books.list)
       }
-      wx.hideNavigationBarLoading();
+      wx.hideNavigationBarLoading()
     },
-    async getTop() {
-      const tops = await get("/weapp/top");
-      this.tops = tops.list;
+    async getTop () {
+      const tops = await get('/weapp/top')
+      this.tops = tops.list
     }
   },
-  onPullDownRefresh() {
-    this.getList(true);
-    this.getTop();
+  onPullDownRefresh () {
+    this.getList(true)
+    this.getTop()
   },
-  onReachBottom() {
+  onReachBottom () {
     if (!this.more) {
-      return false;
+      return false
     }
-    this.page = this.page + 1;
-    this.getList();
+    this.page = this.page + 1
+    this.getList()
   },
-  mounted() {
-    this.getList(true);
-    this.getTop();
+  mounted () {
+    this.getList(true)
+    this.getTop()
   }
-};
+}
 </script>
 
 <style lang="scss">

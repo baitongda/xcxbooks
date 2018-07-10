@@ -19,51 +19,52 @@
 </template>
 
 <script>
-import { get } from "@/util";
+import { get } from '@/util'
 import BookInfo from '@/components/BookInfo'
 export default {
   components: {
     BookInfo
   },
-  data() {
+  data () {
     return {
-      bookid: "",
+      bookid: '',
       info: {},
       comment: '',
       location: '',
       phone: ''
-    };
+    }
   },
   methods: {
-    getGeo(e) {
-      if(e.target.value){
+    getGeo (e) {
+      if (e.target.value) {
         const geoInfo = ''
-      }else{
+        console.log(geoInfo)
+      } else {
         this.geoInfo = ''
       }
     },
-    getPhone(e) {
-      if(e.target.value){
+    getPhone (e) {
+      if (e.target.value) {
         const phoneInfo = wx.getSystemInfoSync().model
         this.phone = phoneInfo
-      }else{
+      } else {
         this.phone = ''
       }
     },
-    async getDetail() {
-      const info = await get("/weapp/bookdetail", { id: this.bookid });
+    async getDetail () {
+      const info = await get('/weapp/bookdetail', { id: this.bookid })
       wx.setNavigationBarTitle({
         title: info.title
-      });
+      })
       this.info = info
       console.log(info)
     }
   },
-  mounted() {
-    this.bookid = this.$root.$mp.query.id;
-    this.getDetail();
+  mounted () {
+    this.bookid = this.$root.$mp.query.id
+    this.getDetail()
   }
-};
+}
 </script>
 
 <style lang="scss">

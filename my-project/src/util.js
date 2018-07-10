@@ -22,17 +22,17 @@ function request (url, method, data) {
         if (res.data.code === 0) {
           resolve(res.data.data)
         } else {
-          showModal('添加失败',res.data.data.msg)
+          showModal('添加失败', res.data.data.msg)
           reject(res.data)
         }
-      },
+      }
 
     })
   })
 }
 
 // 模态弹窗模板
-export function showModal(title,content){
+export function showModal (title, content) {
   wx.showModal({
     title,
     content,
@@ -41,7 +41,7 @@ export function showModal(title,content){
 }
 
 // 弹窗模板
-export function showToast(title){
+export function showToast (title) {
   wx.showToast({
     title,
     icon: 'none'
@@ -55,4 +55,3 @@ export function showSuccess (text) {
     icon: 'success'
   })
 }
-
