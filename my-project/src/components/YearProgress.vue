@@ -33,7 +33,8 @@ export default {
       start.setDate(1)
       // offset是今天的时间戳
       let offset = new Date().getTime() - start.getTime()
-      return (offset / 1000 / 60 / 60 / 24) + 1
+      let lastoffset =(offset / 1000 / 60 / 60 / 24 +1).toFixed(0)
+      return  lastoffset
     },
     percent () {
       return (this.days / this.getDayOfYear() * 100).toFixed(1)

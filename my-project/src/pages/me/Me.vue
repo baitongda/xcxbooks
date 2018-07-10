@@ -66,7 +66,7 @@ export default {
             })
           },
           fail: err => {
-            showToast('登录失败,请先授权用户信息')
+            showToast('登录失败')
             console.log('登录失败', err)
           }
         })
